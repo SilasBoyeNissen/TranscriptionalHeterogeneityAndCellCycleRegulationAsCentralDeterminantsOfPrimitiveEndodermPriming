@@ -1,1 +1,1 @@
-"Link between cell cycle length regulation and endoderm priming in vitro"
+"Transcriptional Heterogeneity and Cell Cycle Regulation as Central Determinants of Primitive Endoderm Priming"
