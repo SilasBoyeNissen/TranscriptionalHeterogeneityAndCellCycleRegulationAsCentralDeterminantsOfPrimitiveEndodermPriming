@@ -4,7 +4,7 @@ by Marta Perera, Silas Boye Nissen, Martin Proks, Sara Pozzi, Rita Soares Montei
 
 Available online: https://elifesciences.org/articles/78967.
 
-#####################################################################################
+####################################################################################
 
 This repository includes the entire dataset for generating and visualizing the figures and the movies in the article.
 
