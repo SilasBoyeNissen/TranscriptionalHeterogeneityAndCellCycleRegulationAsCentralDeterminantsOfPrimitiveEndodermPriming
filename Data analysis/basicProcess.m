@@ -8,7 +8,7 @@ clc; clear; close all; tic;
 %% Parameters
 CONVERTED = '__Matlab converted files'; % The folder name where the converted Matlab files are saved.
 OUTPUT = '__Output XLS files'; % The folder name where the compiled output XLS files will be saved.
-PROCESSALL = 0; % 1 processes all converted Matlab files. 0 only processes the specific Matlab file names.
+PROCESSALL = 1; % 1 processes all converted Matlab files. 0 only processes the specific Matlab file names.
 MATLABNAMES = {'4-71.mat','4-72.mat','4-73.mat','4-74.mat','4-75.mat','4-76.mat','4-77.mat','4-78.mat','4-79.mat','4-80.mat','4-81.mat','4-82.mat','4-83.mat','4-84.mat','4-85.mat','4-86.mat','4-87.mat','4-88.mat'}; % Specific Matlab file(s) to be processed (requires PROCESSALL = 0).
 
 DIVIDECH1 = 5000; % normalize the intensities in channel 1 with this factor
@@ -157,6 +157,10 @@ end
 SA(SA(:, 18) == 0, 18) = 3; % defines group 3 cells (undergoes apoptosis)
 SA(SA(:, 18) ~= 2, [13 16]) = 0; % sets doublingTime and Displacement to 0 for non-group 2 cells
 
+% SA(:, 19) = 2;
+% SA(SA(:, 15) < 0.1376, 19) = 1;
+% SA(SA(:, 15) > 0.1648, 19) = 3;
+% 
 %% Identify the cell types
 SA = doublingAll(SA); % makes a compiled scatter plot and finds the different cell types
 [~, ia] = setdiff(SA(:, 4), SA(:, 5)); % return cells that are not themcell a parent
@@ -164,6 +168,37 @@ SA = doublingAll(SA); % makes a compiled scatter plot and finds the different ce
 SA(ia, 6) = SA(jb, 6); % spreads the cell type to all not full-cycle length in the single cell matrix
 [ia, ib] = ismember(RA(:, 4), SA(:, 4)); % finds the indices to change
 RA(ia, 5) = SA(ib(ib>0), 6); % spreads the cell type to all not full-cycle length in the time dynamics matrix
+% RA(ia, 15) = SA(ib(ib>0), 19);
+% 
+% no = 1000;
+% t1p = zeros(3, 3, no);
+% t2p = zeros(3, 3, no);
+% for k = 1:no
+% stat = zeros(max(SA(:, 2))*3, 5);
+% for i = find(SA(:, 18))'
+% 	stat(SA(i, 2)*3-2, 1:2) = [SA(i, 1) SA(i, 2)];
+% 	stat(SA(i, 2)*3-1, 1:2) = [SA(i, 1) SA(i, 2)];
+% 	stat(SA(i, 2)*3, 1:2) = [SA(i, 1) SA(i, 2)];
+% end
+% for i = randsample(find(SA(:, 18) == 2)', numel(find(SA(:, 18) == 2)'), true)
+%    par = find(SA(:, 4) == SA(i, 5));
+%    if SA(par, 18) == 2
+%        stat(SA(i, 2)*3-3+SA(par, 19), SA(i, 19)+2) = stat(SA(i, 2)*3-3+SA(par, 19), SA(i, 19)+2) + 1;
+%    end
+% end
+% stat(stat(:, 1) == 0, :) = [];
+% stat1 = stat(stat(:, 1) == 1, 3:5);
+% stat2 = stat(stat(:, 1) == 2, 3:5);
+% t1 = [sum(stat1(1:3:end, :));sum(stat1(2:3:end, :)); sum(stat1(3:3:end, :))];
+% t2 = [sum(stat2(1:3:end, :));sum(stat2(2:3:end, :)); sum(stat2(3:3:end, :))];
+% 
+% t1p(:, :, k) = t1./sum(t1, 2)*100;
+% t2p(:, :, k) = t2./sum(t2, 2)*100;
+% end
+% t1pn = mean(t1p, 3)
+% t1ps = std(t1p, 0, 3)
+% t2pn = mean(t2p, 3)
+% t2ps = std(t2p, 0, 3)
 
 %% Various output options
 for n = unique(SA(:, 2))' % loop over the requested Matlab files
