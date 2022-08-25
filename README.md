@@ -1,6 +1,6 @@
 "Transcriptional Heterogeneity and Cell Cycle Regulation as Central Determinants of Primitive Endoderm Priming"
 
-by Marta Perera, Silas Boye Nissen, Martin Proks, Sara Pozzi, Rita Soares Monteiro, Ala Trusina, and Joshua M. Brickman.
+by Marta Perera, Silas Boye Nissen, Martin Proks, Sara Pozzi, Rita Soares Monteiro, Ala Trusina, Joshua M. Brickman.
 
 Available online: https://elifesciences.org/articles/78967.
 
