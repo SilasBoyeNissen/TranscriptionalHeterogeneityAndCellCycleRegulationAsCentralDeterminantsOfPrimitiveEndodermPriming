@@ -6,16 +6,8 @@ Available online: https://elifesciences.org/articles/78967.
 
 ####################################################################################
 
-This repository includes the entire dataset for generating and visualizing the figures and the movies in the article.
+This repository includes the data analysis including the script to produce all the lineage trees from the Imaris file.
 
-The Data folder includes the raw data for all figures and all movies and the original scripts that generated the data.
-
-The Figures folder includes the scripts for generating all main figures and all supplementary figures.
-
-The Matlab folder includes the general script for generating and visualizing data.
-
-The Movies folder includes the scripts for generating all movies.
-
-The Python folder includes a minimal Python version with CUDA acceleration and automatic differentiation.
+The Phase diagram folder includes the script to reproduce Figure 3-figure supplement 1.
 
 For questions please contact silas@nbi.ku.dk.
